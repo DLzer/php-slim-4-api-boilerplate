@@ -20,7 +20,7 @@ The front controller is just the `index.php` file and entry point to the applica
 Container
 ---------
 
-Traditionally the style of fetching dependencies was to inject the whole container into your class which is considered an **anti-pattern**. We swithc up the method in this application by using modern tools like [PHP-DI](http://php-di.org/).
+Traditionally the style of fetching dependencies was to inject the whole container into your class which is considered an **anti-pattern**. We switch up the method in this application by using modern tools like [PHP-DI](http://php-di.org/).
 
 The DI used in this application is housed in a **Depedency Injection Container** ( DIC ). The method we use in this application is [composition over inheritance](https://en.wikipedia.org/wiki/Composition_over_inheritance) and (constructor) DI.
 
