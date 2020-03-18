@@ -28,9 +28,9 @@ Domain
 ------
 
 The domain in this application houses the complex **business logic**.
-Instead of putting together business logic into massive fat "Models", they are separated into specialized *Services* aka and **Application Service**
+Instead of putting together business logic into massive fat "Models", they are separated into specialized *Services* aka an **Application Service**
 
-Each service can have multiple clients, e.g Action (request), CLI (console), Data (logic), Unit Testing (phpunit). This way each service manages only one responsibility and note more by separating data from behavior.
+Each service can have multiple clients, e.g Action (request), CLI (console), Data (logic), Unit Testing (phpunit). This way each service manages only one responsibility and not more by separating data from behavior.
 
 Eloquent
 --------
