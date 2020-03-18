@@ -1,21 +1,21 @@
 <?php
 
 // Error reporting
-error_reporting(0);
-ini_set('display_errors', '0');
+error_reporting(1);
+ini_set('display_errors', '1');
 
 // Timezone
 date_default_timezone_set('America/New_York');
 
 // Load our environment variables
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__, 1));
 $dotenv->load();
 
 // Settings
 $settings = [];
 
 // Path settings
-$settings['root'] = dirname(__DIR__);
+$settings['root'] = dirname(__DIR__, 1);
 $settings['temp'] = $settings['root'] . '/tmp';
 $settings['public'] = $settings['root'] . '/public';
 
