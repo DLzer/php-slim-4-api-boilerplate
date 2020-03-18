@@ -42,7 +42,7 @@ Deployment
 
 Deployment is best served through a **build pipeline** however if manual deployment is necessary it's as simple as running:
 ````
-composer install --no-dev --optimize-autoload
+composer install --no-dev --optimize-autoloader
 ````
 This will remove dev-dependencies as well as optimize the composer autoloader for better performance.
 
