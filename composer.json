@@ -4,6 +4,7 @@
     "require": {
         "illuminate/database": "^7.2",
         "php-di/php-di": "^6.0",
+        "robmorgan/phinx": "^0.12.7",
         "selective/config": "^0.1.1",
         "slim/http": "^1.0",
         "slim/psr7": "^1.0",
@@ -26,5 +27,11 @@
     "config": {
         "process-timeout": 0,
         "sort-packages": true
+    },
+    "scripts": {
+        "start": "php -S localhost:8080 -t public index.php",
+        "create-migration": "vendor/bin/phinx create -c phinx.php --ansi -- ",
+        "migrate": "vendor/bin/phinx migrate -c phinx.php --ansi",
+        "rollback": "vendor/bin/phinx rollback -c phinx.php --ansi -t 0"
     }
 }
