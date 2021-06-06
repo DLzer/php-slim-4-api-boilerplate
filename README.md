@@ -20,7 +20,7 @@ The front controller is just the `index.php` file and entry point to the applica
 Container
 ---------
 
-Traditionally the style of fetching dependencies was to inject the whole container into your class which is considered an **anti-pattern**. We swithc up the method in this application by using modern tools like [PHP-DI](http://php-di.org/).
+Traditionally the style of fetching dependencies was to inject the whole container into your class which is considered an **anti-pattern**. We switch up the method in this application by using modern tools like [PHP-DI](http://php-di.org/).
 
 The DI used in this application is housed in a **Depedency Injection Container** ( DIC ). The method we use in this application is [composition over inheritance](https://en.wikipedia.org/wiki/Composition_over_inheritance) and (constructor) DI.
 
@@ -28,9 +28,9 @@ Domain
 ------
 
 The domain in this application houses the complex **business logic**.
-Instead of putting together business logic into massive fat "Models", they are separated into specialized *Services* aka and **Application Service**
+Instead of putting together business logic into massive fat "Models", they are separated into specialized *Services* aka an **Application Service**
 
-Each service can have multiple clients, e.g Action (request), CLI (console), Data (logic), Unit Testing (phpunit). This way each service manages only one responsibility and note more by separating data from behavior.
+Each service can have multiple clients, e.g Action (request), CLI (console), Data (logic), Unit Testing (phpunit). This way each service manages only one responsibility and not more by separating data from behavior.
 
 Eloquent
 --------
@@ -42,7 +42,7 @@ Deployment
 
 Deployment is best served through a **build pipeline** however if manual deployment is necessary it's as simple as running:
 ````
-composer install --no-dev --optimize-autoload
+composer install --no-dev --optimize-autoloader
 ````
 This will remove dev-dependencies as well as optimize the composer autoloader for better performance.
 
