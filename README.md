@@ -53,4 +53,26 @@ $settings['error_handler_middleware'] = [
 ];
 ````
 
-Big thanks to Daniel Optiz for his incredible write-ups on Slim and best practices.
+Phinx Migration
+---------------
+
+Phinx is a dependency used for creating database migrations and seeds.
+To create a migration run the composer script
+````bash
+$ composer create-migration {Migration Name}
+````
+
+This will create a new migration file under `database/migrations`. In the newly created file
+you can define new tables or existing table modifications. After creating your migration and uploading
+the migration file to your server run this command to populate migrations
+````bash
+$ composer migrate
+````
+
+This will push any changes you wrote to your specified database, all the while keeping a log of changes
+under the self created `phinxlog` table.
+
+Please Note: Windows users cannot use the composer scripts due to the *nix directory separator. But instead
+will have to manually use the commands `vendor\bin\phinx create migration {Migration}`.
+
+This package can do a lot more, you can read about migrations and seeding here: [Phinx](https://book.cakephp.org/phinx/0/en/intro.html)
