@@ -23,6 +23,12 @@ return [
         return $connection;
     },
 
+    // Logging Interface -- Monolog
+    LoggerFactory::class => function (ContainerInterface $container) {
+        return new LoggerFactory($container->get(Configuration::class)->getArray('logger'));
+    },
+
+
     // Initialize PDO
     PDO::class => function (ContainerInterface $container) {
         return $container->get(Connection::class)->getPdo();
