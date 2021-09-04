@@ -1,22 +1,22 @@
 <?php
 
-use Selective\Config\Configuration;
+use Psr\Http\Message\ResponseInterface as Response;
+use Psr\Http\Message\ServerRequestInterface as Request;
+use Psr\Http\Server\RequestHandlerInterface;
+use Selective\BasePath\BasePathMiddleware;
+// use Selective\Validation\Middleware\ValidationExceptionMiddleware;
 use Slim\App;
+use Slim\Middleware\ErrorMiddleware;
 
 return function (App $app) {
-    // Parse json, form data and xml
     $app->addBodyParsingMiddleware();
-
-    // Add routing middleware
     $app->addRoutingMiddleware();
-
-    $container = $app->getContainer();
-    
-    // Add error handler middleware
-    $settings = $container->get(Configuration::class)->getArray('error_handler_middleware');
-    $displayErrorDetails = (bool)$settings['display_error_details'];
-    $logErrors = (bool)$settings['log_errors'];
-    $logErrorDetails = (bool)$settings['log_error_details'];
-
-    $app->addErrorMiddleware($displayErrorDetails, $logErrors, $logErrorDetails);
+    $app->add(function (Request $request, RequestHandlerInterface $handler): Response {
+        $response = $handler->handle($request);
+        $response = $response->withHeader('Content-Type', 'Content-Type: application/json');
+        return $response;
+    });
+    // $app->add(ValidationExceptionMiddleware::class);
+    $app->add(BasePathMiddleware::class);
+    $app->add(ErrorMiddleware::class);
 };

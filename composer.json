@@ -1,18 +1,33 @@
 {
-    "name": "Slim4-Skeleton",
+    "name": "Slim4Skeleton",
     "description": "Slim 4 Application Example",
     "require": {
-        "illuminate/database": "^7.2",
-        "php-di/php-di": "^6.0",
-        "robmorgan/phinx": "^0.12.7",
-        "selective/config": "^0.1.1",
-        "slim/http": "^1.0",
-        "slim/psr7": "^1.0",
-        "slim/slim": "4.*",
-        "vlucas/phpdotenv": "^4.1"
+        "slim/slim": "^4.3.0",
+        "firebase/php-jwt": "^5.4",
+        "monolog/monolog": "^1.24",
+        "guzzlehttp/guzzle": "^6.5",
+        "tuupola/slim-jwt-auth": "^3.5",
+        "slim/psr7": "^1.3",
+        "php-di/php-di": "^6.3",
+        "selective/config": "^1.1",
+        "selective/basepath": "^2.0",
+        "robmorgan/phinx": "^0.12.6",
+        "vlucas/phpdotenv": "^5.3",
+        "symfony/mailer": "^5.3",
+        "symfony/twig-bridge": "^5.3",
+        "nyholm/psr7": "^1.4",
+        "nyholm/psr7-server": "^1.0",
+        "selective/validation": "^1.1",
+        "cakephp/validation": "^4.2",
+        "selective/array-reader": "^1.1",
+        "cakephp/database": "^4.2",
+        "cakephp/chronos": "^2.2"
     },
     "require-dev": {
-        "phpunit/phpunit": "^9.0"
+        "vimeo/psalm": "^4.3",
+        "selective/test-traits": "^1.1",
+        "odan/phinx-migrations-generator": "^5.4",
+        "phpunit/phpunit": "^9.5"
     },
     "autoload": {
         "psr-4": {
@@ -32,6 +47,9 @@
         "start": "php -S localhost:8080 -t public index.php",
         "create-migration": "vendor/bin/phinx create -c phinx.php --ansi -- ",
         "migrate": "vendor/bin/phinx migrate -c phinx.php --ansi",
-        "rollback": "vendor/bin/phinx rollback -c phinx.php --ansi -t 0"
+        "seed": "vendor/bin/phinx seed:run",
+        "rollback": "vendor/bin/phinx rollback -c phinx.php --ansi -t 0",
+        "test": "phpunit --configuration phpunit.xml",
+        "test:coverage": "phpunit --configuration phpunit.xml --coverage-clover build/logs/clover.xml --coverage-html build/coverage"
     }
 }
