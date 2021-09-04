@@ -36,7 +36,7 @@ final class UserData
         $this->firstName    = $reader->findString('first_name');
         $this->lastName     = $reader->findString('last_name');
         $this->email        = $reader->findString('email');
-        $this->createdAt    = $reader->findInt('created_at');
+        $this->createdAt    = $reader->findString('created_at');
     }
 
 }
