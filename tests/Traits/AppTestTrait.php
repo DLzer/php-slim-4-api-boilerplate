@@ -39,9 +39,9 @@ trait AppTestTrait
 
         $this->setUpContainer($this->app->getContainer());
 
-        if (method_exists($this, 'setUpDatabase')) {
-            $this->setUpDatabase(__DIR__ . '/../../resources/schema/schema.sql');
-        }
+        // if (method_exists($this, 'setUpDatabase')) {
+        //     $this->setUpDatabase(__DIR__ . '/../../resources/schema/schema.sql');
+        // }
     }
 
 }

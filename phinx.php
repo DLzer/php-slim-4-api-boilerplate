@@ -18,6 +18,8 @@ return
         'seeds' => $db['seeds'],
     ],
     'schema_file' => $db['schema'],
+    'default_migration_prefix' => '',
+    'mark_generated_migration' => true,
     'environments' => [
         'default_migration_table' => $db['default_migration_table'],
         'default_environment' => $env[0],

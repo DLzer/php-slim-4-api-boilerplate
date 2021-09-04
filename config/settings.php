@@ -93,8 +93,8 @@ $settings['phinx'] = [
             'port' => 3306,
             'name' => 'local',
             'socket' => NULL,
-            'user' => 'password',
-            'pass' => 'amf_local',
+            'user' => 'local',
+            'pass' => 'local',
             'charset' => 'utf8',
         ],
         'development' => [

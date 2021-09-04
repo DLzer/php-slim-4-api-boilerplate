@@ -3,16 +3,8 @@
 
 use Phinx\Seed\AbstractSeed;
 
-class UsersSeeder extends AbstractSeed
+class UserSeeder extends AbstractSeed
 {
-
-    public function getDependencies()
-    {
-        return [
-            'UserGoalsSeeder'
-        ];
-    }
-
     /**
      * Run Method.
      *
@@ -25,24 +17,24 @@ class UsersSeeder extends AbstractSeed
     {
 
         // Clean the table out prior to seeding
-        $this->execute("SET FOREIGN_KEY_CHECKS = 0; TRUNCATE table am_users; SET FOREIGN_KEY_CHECKS = 1;");
+        $this->execute("SET FOREIGN_KEY_CHECKS = 0; TRUNCATE table users; SET FOREIGN_KEY_CHECKS = 1;");
 
         // Add two users. A member and an admin.
-        $users = $this->table('am_users');
+        $users = $this->table('users');
         $data = [
             [
                 'first_name' => 'Alex',
                 'last_name' => 'Hamilton',
                 'role_id' => 1,
                 'email' => 'testadmin@testmail.com',
-                'date_modified' => date('Y-m-d H:i:s')
+                'created_at' => date('Y-m-d H:i:s')
             ],
             [
                 'first_name' => 'John',
                 'last_name' => 'Sanders',
                 'role_id' => 2,
                 'email' => 'testmember@testmail.com',
-                'date_modified' => date('Y-m-d H:i:s')
+                'created_at' => date('Y-m-d H:i:s')
               ],
         ];
 
