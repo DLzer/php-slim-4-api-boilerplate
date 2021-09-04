@@ -1,5 +1,7 @@
 # PHP Slim 4 Skeleton
 
+[![CI](https://github.com/DLzer/slim4skeleton/actions/workflows/ci.yml/badge.svg)](https://github.com/DLzer/slim4skeleton/actions/workflows/ci.yml)[![CI-coverage](https://github.com/DLzer/slim4skeleton/actions/workflows/ci-coverage.yml/badge.svg?branch=master)](https://github.com/DLzer/slim4skeleton/actions/workflows/ci-coverage.yml)
+
 Using the [Slim 4](https://www.slimframework.com/docs/v4/) framework
 
 ### Pre-requisites
