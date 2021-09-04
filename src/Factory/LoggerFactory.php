@@ -2,8 +2,8 @@
 
 namespace App\Factory;
 
-use Exception;
 use Monolog\Formatter\LineFormatter;
+use Monolog\Handler\HandlerInterface;
 use Monolog\Handler\RotatingFileHandler;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
@@ -12,22 +12,20 @@ use Psr\Log\LoggerInterface;
 /**
  * Factory.
  */
-class LoggerFactory
+final class LoggerFactory
 {
-    /**
-     * @var string
-     */
+
+    /** @var string */
     private $path;
 
-    /**
-     * @var int
-     */
+    /** @var int */
     private $level;
 
-    /**
-     * @var array Handler
-     */
+    /** @var array */
     private $handler = [];
+
+    /** @var LoggerInterface */
+    private $testLogger;
 
     /**
      * The constructor.
@@ -36,20 +34,30 @@ class LoggerFactory
      */
     public function __construct(array $settings)
     {
-        $this->path  = (string) $settings['path'];
-        $this->level = (int) $settings['level'];
+        $this->path = (string)$settings['path'];
+        $this->level = (int)$settings['level'];
+
+        // This can be used for testing to make the Factory testable
+        if (isset($settings['test'])) {
+            $this->testLogger = $settings['test'];
+        }
     }
 
     /**
      * Build the logger.
      *
-     * @param string $name The name
+     * @param string|null $name The loggin channel
      *
      * @return LoggerInterface The logger
      */
-    public function createInstance(string $name): LoggerInterface
+    public function createLogger(string $name = null): LoggerInterface
     {
-        $logger = new Logger($name);
+
+        if (isset($this->testLogger)) {
+            return $this->testLogger;
+        }
+
+        $logger = new Logger($name ?: uniqid());
 
         foreach ($this->handler as $handler) {
             $logger->pushHandler($handler);
@@ -61,25 +69,39 @@ class LoggerFactory
     }
 
     /**
-     * @param string   $filename
-     * @param null|int $level
+     * Add a handler.
      *
-     * @throws Exception
+     * @param HandlerInterface $handler The handler
      *
-     * @return $this
+     * @return self The logger factory
+     */
+    public function addHandler(HandlerInterface $handler): self
+    {
+        $this->handler[] = $handler;
+
+        return $this;
+    }
+
+    /**
+     * Add rotating file logger handler.
+     *
+     * @param string $filename The filename
+     * @param int $level The level (optional)
+     *
+     * @return LoggerFactory The logger factory
      */
     public function addFileHandler(string $filename, int $level = null): self
     {
-        if (!is_writeable($this->path)) {
-            die(_fe('{0} is not writable by the webserver.<br>Please run:<br>sudo chown -R www-data:www-data {0}<br>sudo chmod -R 0775 {0}', $this->path));
-        }
-        $filename            = sprintf('%s/%s', $this->path, $filename);
-        $rotatingFileHandler = new RotatingFileHandler($filename, 0, $level ?? $this->level, true, 0755);
+        $filename = sprintf('%s/%s', $this->path, $filename);
+
+        $rotatingFileHandler = new RotatingFileHandler($filename, 0,$level ?? $this->level,true,0777);
 
         // The last "true" here tells monolog to remove empty []'s
-        $rotatingFileHandler->setFormatter(new LineFormatter(null, null, false, true));
+        $rotatingFileHandler->setFormatter(
+            new LineFormatter(null, null, false, true)
+        );
 
-        $this->handler[] = $rotatingFileHandler;
+        $this->addHandler($rotatingFileHandler);
 
         return $this;
     }
@@ -96,7 +118,7 @@ class LoggerFactory
         $streamHandler = new StreamHandler('php://stdout', $level ?? $this->level);
         $streamHandler->setFormatter(new LineFormatter(null, null, false, true));
 
-        $this->handler[] = $streamHandler;
+        $this->addHandler($streamHandler);
 
         return $this;
     }

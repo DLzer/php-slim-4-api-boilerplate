@@ -4,7 +4,7 @@ use Slim\App;
 use Slim\Routing\RouteCollectorProxy;
 
 return function (App $app) {
-    $app->get('/', \App\Action\HomeAction::class);
+    $app->get('/', \App\Action\Home\HomeAction::class);
 
 
         // Users Route Group
