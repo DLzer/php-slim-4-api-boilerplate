@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 use Phinx\Migration\AbstractMigration;
 
-final class ExampleMigration extends AbstractMigration
+final class UserMigration extends AbstractMigration
 {
     /**
      * Change Method.
@@ -18,13 +18,12 @@ final class ExampleMigration extends AbstractMigration
      */
     public function change(): void
     {
-        $table = $this->table('example_migration_table');
-        $table->addColumn('user_id', 'integer')
-              ->addColumn('first_name', 'string' , ['length' => 50])
+        $table = $this->table('users');
+        $table->addColumn('first_name', 'string' , ['length' => 50])
               ->addColumn('last_name', 'string', ['length' => 50])
+              ->addColumn('role_id', 'integer')
               ->addColumn('email', 'string', ['length' => 50])
               ->addColumn('created_at', 'timestamp', ['default' => NULL])
-              ->addIndex(['member_id'])
               ->create();
     }
 }
