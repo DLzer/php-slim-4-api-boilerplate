@@ -5,9 +5,9 @@
 Using the [Slim 4](https://www.slimframework.com/docs/v4/) framework
 
 ### Pre-requisites
-PHP 7.4 or above is required
-Composer is required
-Docker is optional
+- PHP 7.4 or above is required
+- Composer is required
+- Docker is optional
 
 ### Core Dependencies 
 
@@ -272,7 +272,7 @@ For more information check Slim documentations:
 
 # Test
 
-Tests are run using PHP-Unit-7
+Tests are run using PHP-Unit-9
 > To run the tests
 ```bash
 $ composer test
