@@ -1,6 +1,14 @@
 {
-    "name": "Slim4Skeleton",
-    "description": "Slim 4 Application Example",
+    "name": "dlzer/slim4skeleton",
+    "description": "REST API Skeleton Project",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Dillon Lomnitzer",
+            "email": "dillon.lomnitzer@gmail.com"
+        }
+    ],
     "require": {
         "slim/slim": "^4.3.0",
         "firebase/php-jwt": "^5.4",
@@ -31,17 +39,13 @@
     },
     "autoload": {
         "psr-4": {
-            "App\\": "src"
+            "App\\" : "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "App\\Test\\": "tests"
+            "App\\Test\\": "tests/"
         }
-    },
-    "config": {
-        "process-timeout": 0,
-        "sort-packages": true
     },
     "scripts": {
         "start": "php -S localhost:8080 -t public index.php",
